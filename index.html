@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MXN WEAR — A história por trás do movimento</title>
+<meta name="description" content="Da suplementação ao movimento. Conheça a história da MXN WEAR, criada pela Maxinutri.">
+<style>
+  :root{
+    --black:#0a0a0a;
+    --ink:#141414;
+    --white:#f7f7f5;
+    --accent:#1f8a4f;
+    --accent-2:#2fae66;
+    --lime:#cdfa3c;
+    --gray:#8a8a8a;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--black);
+    color:var(--white);
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:600px;margin:0 auto;padding:0 24px;}
+
+  /* progress bar */
+  #progress{
+    position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--lime));
+    width:0%;z-index:100;transition:width .1s linear;
+  }
+
+  /* HERO */
+  .hero{
+    min-height:100vh;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;
+    text-align:center;position:relative;
+    padding:80px 24px 40px;
+    background:
+      linear-gradient(180deg, rgba(10,10,10,.45) 0%, rgba(10,10,10,.75) 55%, var(--black) 100%),
+      radial-gradient(circle at 85% 12%, rgba(205,250,60,.18), transparent 40%),
+      url('assets/mxn-black.jpg');
+    background-size:cover;
+    background-position:center 30%;
+  }
+  .hero .stripe{
+    position:absolute;inset:0;
+    background:repeating-linear-gradient(115deg, transparent 0 60px, rgba(255,255,255,.03) 60px 62px);
+    pointer-events:none;
+  }
+  .eyebrow{
+    font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--gray);
+    margin-bottom:18px;font-weight:700;
+  }
+  .eyebrow span{color:var(--accent);}
+  .logo-mark{
+    font-weight:900;font-size:clamp(48px,15vw,88px);line-height:.95;letter-spacing:-.02em;
+    background:linear-gradient(180deg,#fff, #cfcfcf);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .logo-mark .wear{
+    display:block;font-size:.36em;letter-spacing:.35em;color:var(--accent);
+    -webkit-text-fill-color:var(--accent);margin-top:6px;
+  }
+  .hero-tag{
+    margin-top:26px;font-size:17px;color:#c9c9c9;max-width:320px;line-height:1.5;
+  }
+  .hero-tag b{color:var(--white);}
+  .scroll-cue{
+    position:absolute;bottom:34px;left:50%;transform:translateX(-50%);
+    display:flex;flex-direction:column;align-items:center;gap:8px;
+    font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);
+  }
+  .scroll-cue .line{width:1px;height:34px;background:linear-gradient(var(--gray),transparent);animation:pulse 1.8s infinite;}
+  @keyframes pulse{0%,100%{opacity:.3;}50%{opacity:1;}}
+
+  /* SECTIONS */
+  section{padding:110px 0;position:relative;}
+  .reveal{
+    opacity:0;transform:translateY(28px);
+    transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1);
+  }
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  .q{
+    font-weight:900;font-size:clamp(26px,7vw,34px);line-height:1.25;
+    border-left:4px solid var(--accent);padding-left:20px;
+  }
+  .a{
+    font-weight:900;font-size:clamp(30px,8vw,40px);color:var(--lime);margin-top:22px;
+  }
+
+  .lead{
+    font-size:clamp(19px,5.2vw,23px);line-height:1.55;font-weight:500;color:#e6e6e6;
+  }
+  .lead + .lead{margin-top:26px;}
+  .lead .hl{color:var(--white);font-weight:800;}
+
+  .moments{
+    display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:36px;
+  }
+  .moment{
+    background:var(--ink);border:1px solid rgba(255,255,255,.08);
+    border-radius:16px;padding:22px 16px;text-align:center;
+    display:flex;flex-direction:column;align-items:center;gap:10px;
+  }
+  .moment svg{width:30px;height:30px;stroke:var(--accent);}
+  .moment span{font-weight:700;font-size:14px;letter-spacing:.02em;color:#dedede;}
+
+  .showcase-head{text-align:center;margin-bottom:38px;}
+  .showcase-head .kicker{
+    font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--lime);font-weight:800;
+  }
+  .showcase-head h3{
+    font-size:clamp(24px,7vw,32px);font-weight:900;margin-top:10px;line-height:1.2;
+  }
+  .shoes{display:flex;flex-direction:column;gap:22px;}
+  .shoe-card{
+    background:var(--ink);border:1px solid rgba(255,255,255,.08);
+    border-radius:20px;overflow:hidden;
+  }
+  .shoe-card img{width:100%;display:block;aspect-ratio:478/540;object-fit:cover;}
+  .shoe-card .cap{
+    padding:16px 18px 20px;display:flex;justify-content:space-between;align-items:center;
+  }
+  .shoe-card .cap b{font-size:15px;font-weight:800;}
+  .shoe-card .cap span{font-size:12px;color:var(--gray);letter-spacing:.03em;}
+
+  .divider{
+    width:56px;height:5px;background:linear-gradient(90deg,var(--accent),var(--lime));
+    border-radius:3px;margin:0 auto 46px;
+  }
+
+  .big-statement{
+    font-weight:900;font-size:clamp(34px,10vw,52px);line-height:1.08;text-align:center;
+  }
+  .big-statement .out{color:var(--accent);}
+
+  .panel{
+    background:linear-gradient(160deg,#081a10,var(--black) 60%);
+    border-top:1px solid rgba(31,138,79,.35);
+    border-bottom:1px solid rgba(31,138,79,.35);
+  }
+
+  .closing{
+    text-align:center;padding:130px 0 90px;
+  }
+  .closing p{
+    font-size:clamp(18px,4.6vw,20px);color:#cfcfcf;line-height:1.6;max-width:420px;margin:0 auto 34px;
+  }
+  .closing .final{
+    font-weight:900;font-size:clamp(38px,12vw,64px);letter-spacing:-.01em;line-height:1;
+    background:linear-gradient(180deg,var(--lime),#8fd400);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .closing .final small{
+    display:block;font-size:.28em;letter-spacing:.3em;color:var(--white);
+    -webkit-text-fill-color:var(--white);margin-top:14px;font-weight:800;
+  }
+
+  footer{
+    padding:48px 0 60px;text-align:center;border-top:1px solid rgba(255,255,255,.08);
+  }
+  footer .brand{font-weight:900;letter-spacing:.06em;font-size:15px;}
+  footer .brand span{color:var(--accent);}
+  footer .sub{margin-top:8px;font-size:12px;color:var(--gray);letter-spacing:.05em;}
+  footer .links{margin-top:22px;display:flex;justify-content:center;gap:18px;font-size:13px;color:#d0d0d0;font-weight:600;}
+
+  @media (min-width:640px){
+    .moments{grid-template-columns:repeat(4,1fr);}
+    .shoes{flex-direction:row;}
+    .shoe-card{flex:1;}
+  }
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<section class="hero">
+  <div class="stripe"></div>
+  <div class="eyebrow">uma história da <span>MAXINUTRI</span></div>
+  <div class="logo-mark">MXN<span class="wear">WEAR</span></div>
+  <p class="hero-tag">Da suplementação ao movimento. <b>Isso é para você que faz parte da nossa história.</b></p>
+  <div class="scroll-cue"><span>role para descobrir</span><span class="line"></span></div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="q reveal">"Agora a Maxinutri é uma marca de roupas?"</p>
+    <p class="a reveal">Não exatamente.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="lead reveal">A gente continua fazendo o que <span class="hl">sempre fez</span>: cuidando de pessoas por meio da suplementação.</p>
+    <p class="lead reveal">Mas, com o tempo, percebemos que a nossa marca também começou a acompanhar <span class="hl">outros momentos</span> da vida de quem está com a gente.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="divider"></div>
+    <div class="moments">
+      <div class="moment reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5 17.5 17.5"/><path d="M4 8l2.5-2.5"/><path d="M15.5 4 20 8.5"/><path d="M8.5 20 4 15.5"/><path d="M19.5 15.5 15.5 19.5"/></svg>
+        <span>Nos treinos</span>
+      </div>
+      <div class="moment reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+        <span>Na rotina</span>
+      </div>
+      <div class="moment reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16l20-6-3 3-3-1-4 4-3-1-3 3z"/><path d="M13 13l3 6-2 1-2-4"/></svg>
+        <span>Nas viagens</span>
+      </div>
+      <div class="moment reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="17" cy="5" r="1.6" fill="currentColor" stroke="none"/><path d="M14 9l1.5 2 3 1 1.5 4"/><path d="M9 20l3-5 2-2-1-3-4 1-2 4"/></svg>
+        <span>Nos movimentos que fazem bem</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="showcase-head reveal">
+      <div class="kicker">o presente que você recebeu</div>
+      <h3>Feito para acompanhar cada passo.</h3>
+    </div>
+    <div class="shoes">
+      <div class="shoe-card reveal">
+        <img src="assets/mxn-black.jpg" alt="Tênis MXN colorway preto e lima" loading="lazy">
+        <div class="cap"><b>MXN</b><span>Preto &amp; Lima</span></div>
+      </div>
+      <div class="shoe-card reveal">
+        <img src="assets/mxn-white.jpg" alt="Tênis MXN colorway branco e verde" loading="lazy">
+        <div class="cap"><b>MXN</b><span>Branco &amp; Verde</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="panel">
+  <div class="wrap">
+    <p class="big-statement reveal">A <span class="out">MXN WEAR</span> nasceu desse desejo.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="lead reveal">Não para a Maxinutri entrar no mercado da moda.<br>Nem para fazer da roupa mais um produto.</p>
+    <p class="lead reveal">Mas para criar uma forma de levar a <span class="hl">nossa essência</span> para outros momentos da rotina.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="lead reveal">Porque existe um momento em que uma marca deixa de estar apenas na prateleira.</p>
+    <p class="lead reveal">Ela passa a fazer parte da <span class="hl">rotina</span>, das <span class="hl">escolhas</span> e da <span class="hl">identidade</span> de quem acredita no que ela representa.</p>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap">
+    <p class="reveal">E é aí que nasce o pertencimento.</p>
+    <div class="final reveal">MXN<small>WEAR</small></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand">MAXI<span>NUTRI</span></div>
+    <div class="sub">CUIDANDO DE VOCÊ EM CADA MOVIMENTO</div>
+    <div class="links">
+      <span>@maxinutri</span>
+      <span>·</span>
+      <span>maxinutri.com.br</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const bar = document.getElementById('progress');
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement;
+    const pct = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+    bar.style.width = pct + '%';
+  });
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('.reveal').forEach((el, i) => {
+    el.style.transitionDelay = (i % 4) * 0.08 + 's';
+    io.observe(el);
+  });
+</script>
+</body>
+</html>
