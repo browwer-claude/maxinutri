@@ -13,6 +13,8 @@
     --muted:#5a5b5e;
     --green:#1f6e40;
     --line:rgba(17,17,17,.12);
+    --stage1:#f2e6d2;
+    --stage2:#c8ad86;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;scroll-snap-type:y proximity;}
@@ -37,7 +39,7 @@
 
   /* ---------- shared poster template ---------- */
   section.m{
-    min-height:100vh;min-height:100svh;position:relative;
+    min-height:100vh;min-height:100svh;position:relative;overflow-x:hidden;
     display:flex;flex-direction:column;align-items:center;justify-content:center;
     padding:100px 32px;scroll-snap-align:start;text-align:center;
   }
@@ -76,6 +78,18 @@
     position:absolute;bottom:26px;left:50%;transform:translateX(-50%);
     font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);
   }
+
+  /* ---------- warm product stage (hero + reveal) ---------- */
+  .stage-m{
+    background:radial-gradient(120% 100% at 30% 15%, var(--stage1), var(--stage2) 78%);
+  }
+  .stage-m .mark{color:rgba(17,17,17,.55);}
+  .stage-shoe{
+    position:relative;z-index:2;width:min(112vw,640px);margin:26px auto 0;display:block;
+    filter:drop-shadow(0 34px 34px rgba(50,32,14,.32));
+  }
+  .hero-m .stage-shoe{transform:rotate(-3deg) translateX(3%);}
+  .m3 .stage-shoe{transform:rotate(2deg) translateX(-2%);width:min(120vw,680px);margin-top:34px;}
 
   /* ---------- M4 spin ---------- */
   .m4{padding-top:90px;padding-bottom:70px;}
@@ -119,13 +133,14 @@
 <div class="rail" aria-hidden="true"><div class="track"></div><div class="fill" id="railFill"></div><div class="dot" id="railDot"></div></div>
 
 <!-- M1 — 20 ANOS -->
-<section class="m" id="m1">
+<section class="m stage-m hero-m" id="m1">
   <div class="content">
     <div class="big">20</div>
     <p class="subtitle">Vinte anos Maxinutri.</p>
     <p class="para">Há duas décadas, começamos uma jornada.<br>Crescemos. Evoluímos. Seguimos em frente.<br>E nunca caminhamos sozinhos.</p>
-    <p class="mark">Maxinutri</p>
   </div>
+  <img class="stage-shoe" src="assets/cutout-black.png" alt="MXN RUN" loading="eager">
+  <p class="mark">Maxinutri</p>
   <div class="scrolldown">role</div>
 </section>
 
@@ -140,13 +155,14 @@
 </section>
 
 <!-- M3 — MXN RUN -->
-<section class="m" id="m3">
+<section class="m stage-m" id="m3">
   <div class="content">
     <div class="big clip reveal">Run.</div>
     <p class="subtitle reveal">Não apenas um presente.</p>
     <p class="para reveal">Um símbolo da nossa caminhada,<br>criado para celebrar vinte anos<br>construídos juntos.</p>
-    <p class="mark reveal">MXN Run</p>
   </div>
+  <img class="stage-shoe reveal" src="assets/cutout-black.png" alt="MXN RUN completo" loading="lazy">
+  <p class="mark reveal">MXN Run</p>
 </section>
 
 <!-- M4 — 360° -->
