@@ -3,184 +3,188 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0a0a0a">
+<meta name="theme-color" content="#060606">
 <title>MXN RUN — 20 Anos Maxinutri</title>
 <meta name="description" content="20 anos Maxinutri. Cada passo nos trouxe até aqui. Obrigado por caminhar conosco.">
 <style>
   :root{
-    --black:#0a0a0a;
-    --ink:#131313;
-    --white:#f7f7f5;
-    --green:#1f8a4f;
-    --lime:#cdfa3c;
-    --gray:#8a8a8a;
+    --black:#060606;
+    --ink:#111311;
+    --green:#18a350;
+    --green-deep:#0b3d21;
+    --lime:#d6ff4a;
+    --white:#f5f5f2;
+    --gray:#8d8d8a;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:smooth;scroll-snap-type:y proximity;}
   body{
-    background:var(--black);
-    color:var(--white);
+    background:var(--black);color:var(--white);
     font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
-    overflow-x:hidden;
-    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;-webkit-font-smoothing:antialiased;
   }
-  .wrap{max-width:520px;margin:0 auto;padding:0 28px;}
-  img{-webkit-user-drag:none;}
-
+  img{-webkit-user-drag:none;max-width:none;}
   @media (prefers-reduced-motion: reduce){
     *{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;}
     html{scroll-behavior:auto;}
   }
-
   noscript .seq, noscript .reveal { opacity:1 !important; transform:none !important; }
 
-  /* ---------- side path rail ---------- */
-  .rail{
-    position:fixed;right:12px;top:50%;transform:translateY(-50%);
-    height:46vh;width:2px;z-index:60;
-  }
-  .rail .track{position:absolute;inset:0;background:rgba(255,255,255,.12);border-radius:2px;}
-  .rail .fill{
-    position:absolute;left:0;top:0;width:100%;height:0%;
-    background:linear-gradient(180deg,#fff,var(--lime));border-radius:2px;
-  }
-  .rail .dot{
-    position:absolute;left:50%;top:0%;width:7px;height:7px;
-    margin-left:-3.5px;margin-top:-3.5px;border-radius:50%;background:var(--lime);
-    box-shadow:0 0 10px 3px rgba(205,250,60,.55);
-  }
-  @media (max-width:480px){ .rail{right:8px;height:38vh;} }
+  /* ---------- side rail ---------- */
+  .rail{position:fixed;right:12px;top:50%;transform:translateY(-50%);height:44vh;width:2px;z-index:80;mix-blend-mode:difference;}
+  .rail .track{position:absolute;inset:0;background:rgba(255,255,255,.35);border-radius:2px;}
+  .rail .fill{position:absolute;left:0;top:0;width:100%;height:0%;background:#fff;border-radius:2px;}
+  .rail .dot{position:absolute;left:50%;top:0%;width:7px;height:7px;margin-left:-3.5px;margin-top:-3.5px;border-radius:50%;background:#fff;}
+  @media (max-width:480px){ .rail{right:8px;height:36vh;} }
 
-  /* ---------- shared type ---------- */
+  /* ---------- shared ---------- */
   section.m{
-    min-height:100vh;min-height:100svh;
+    min-height:100vh;min-height:100svh;position:relative;overflow:hidden;
     display:flex;flex-direction:column;align-items:center;justify-content:center;
-    text-align:center;position:relative;
-    padding:90px 26px;scroll-snap-align:start;
+    padding:100px 26px;scroll-snap-align:start;
   }
-  html{scroll-snap-type:y proximity;}
-
+  .content{position:relative;z-index:3;width:100%;max-width:480px;text-align:center;}
   .kicker{
-    font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--gray);
-    font-weight:800;margin-bottom:20px;
+    display:inline-flex;align-items:center;gap:9px;
+    font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--gray);
+    font-weight:800;margin-bottom:22px;
   }
-  .mid{
-    font-size:clamp(19px,5.6vw,25px);line-height:1.5;font-weight:600;color:#e9e9e9;
-    max-width:340px;
+  .kicker::before{content:'';width:16px;height:2px;background:var(--lime);display:inline-block;}
+  .huge{
+    font-weight:900;text-transform:uppercase;letter-spacing:-.015em;
+    font-size:clamp(40px,12.5vw,78px);line-height:.98;
   }
-  .mid.soft{color:var(--gray);font-weight:500;margin-top:10px;}
-  .mid + .mid{margin-top:14px;}
-  .accent{color:var(--lime);}
-  .giant-line{
-    font-weight:900;font-size:clamp(38px,11vw,64px);line-height:1.06;letter-spacing:-.01em;
-    margin:26px 0;
+  .huge .lime{color:var(--lime);}
+  .support{
+    font-size:clamp(15px,4.2vw,18px);color:#c8c8c4;font-weight:500;line-height:1.6;
+    max-width:340px;margin:20px auto 0;
   }
-  .thanks{
-    font-size:clamp(16px,4.4vw,19px);line-height:1.7;color:#cfcfcf;font-weight:600;
-    margin-top:22px;
-  }
-  .signature{
-    font-size:clamp(15px,4vw,18px);color:var(--gray);line-height:1.7;margin-top:8px;
-  }
-  .signature b{color:var(--white);font-weight:800;}
-
-  .seq, .reveal{
-    opacity:0;transform:translateY(24px);
-    transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1);
-  }
+  .support b{color:var(--white);font-weight:800;}
+  .seq, .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1);}
   .seq.in, .reveal.in{opacity:1;transform:translateY(0);}
 
+  .ghost{
+    position:absolute;font-weight:900;line-height:.8;letter-spacing:-.02em;
+    color:rgba(255,255,255,.05);-webkit-text-stroke:1px rgba(255,255,255,.12);
+    pointer-events:none;z-index:0;white-space:nowrap;user-select:none;
+  }
+
   /* ---------- M1 hero ---------- */
-  .hero-m{
-    background:
-      radial-gradient(circle at 50% 18%, rgba(31,138,79,.16), transparent 45%),
-      radial-gradient(circle at 80% 85%, rgba(205,250,60,.08), transparent 40%),
-      var(--black);
+  .hero-m{background:var(--black);padding-top:120px;}
+  .hero-diag{
+    position:absolute;inset:0;z-index:0;
+    clip-path:polygon(0 0, 56% 0, 26% 100%, 0 100%);
+    background:linear-gradient(165deg,var(--green) 0%,var(--green-deep) 100%);
   }
-  .brandmark{
-    font-size:11px;letter-spacing:.32em;color:var(--gray);font-weight:800;
-    margin-bottom:34px;animation:fadeIn .9s ease both;
+  .hero-diag::after{
+    content:'';position:absolute;inset:0;
+    background:repeating-linear-gradient(115deg, transparent 0 22px, rgba(0,0,0,.06) 22px 24px);
   }
-  .giant-num{
-    font-weight:900;font-size:clamp(140px,44vw,220px);line-height:.85;
-    background:linear-gradient(180deg,#fff,#c9c9c9 60%,#8f8f8f);
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-    animation:bigIn 1.15s cubic-bezier(.16,1,.3,1) .25s both;
+  .hero-ghost{top:-2%;right:-10%;font-size:clamp(200px,58vw,460px);transform:rotate(-7deg);}
+  .hero-glow{
+    position:absolute;right:-14%;bottom:-12%;width:78%;aspect-ratio:1;z-index:0;
+    background:radial-gradient(circle, rgba(214,255,74,.22), transparent 65%);filter:blur(6px);
   }
-  .tagline{
-    font-weight:800;font-size:clamp(19px,5.6vw,26px);line-height:1.4;margin-top:22px;
-    animation:fadeIn 1s ease .95s both;
+  .hero-shoe{
+    position:absolute;right:-14%;bottom:-11%;width:min(58vw,420px);z-index:1;
+    transform:rotate(-9deg);filter:drop-shadow(0 26px 34px rgba(0,0,0,.65));
   }
-  .seedline{
-    width:2px;height:0;margin:30px auto 0;border-radius:2px;
-    background:linear-gradient(180deg,rgba(255,255,255,.5),var(--lime));
-    animation:growLine 1s ease 1.7s forwards;
-  }
+  .hero-m .content{text-align:left;max-width:100%;padding-top:0;}
+  .hero-m .kicker{margin-bottom:26px;}
+  .hero-headline{font-weight:900;text-transform:uppercase;letter-spacing:-.02em;
+    font-size:clamp(36px,10.6vw,96px);line-height:1.02;}
+  .hero-headline span{display:block;}
+  .hero-headline .lime{color:var(--lime);}
   .scrolldown{
-    position:absolute;bottom:30px;left:50%;transform:translateX(-50%);
-    font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--gray);
-    animation:fadeIn 1s ease 2s both;
+    position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:3;
+    font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--gray);
   }
-  @keyframes bigIn{from{opacity:0;transform:scale(.72) translateY(24px);filter:blur(10px);}to{opacity:1;transform:scale(1) translateY(0);filter:blur(0);}}
   @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
-  @keyframes growLine{to{height:70px;}}
+  .hero-m .kicker,.hero-m .hero-headline,.hero-m .hero-shoe,.hero-m .scrolldown{animation:fadeIn 1s ease both;}
+  .hero-m .hero-headline{animation-delay:.15s;}
+  .hero-m .hero-shoe{animation-delay:.35s;}
+  .hero-m .scrolldown{animation-delay:1.1s;}
 
   /* ---------- M2 caminhada ---------- */
-  .narrative .line{
-    font-size:clamp(19px,5.8vw,27px);line-height:1.5;font-weight:700;color:#dcdcdc;
-    max-width:360px;margin:0 auto 30px;
+  .m2{background:var(--black);}
+  .m2 .speedlines{
+    position:absolute;inset:0;z-index:0;
+    background:repeating-linear-gradient(112deg, transparent 0 34px, rgba(255,255,255,.035) 34px 36px);
+    -webkit-mask-image:linear-gradient(180deg,transparent,#000 25%,#000 75%,transparent);
+    mask-image:linear-gradient(180deg,transparent,#000 25%,#000 75%,transparent);
   }
-  .narrative .line.strong{color:var(--white);font-weight:900;}
-  .narrative .line.strong span{
-    display:inline-block;opacity:0;transform:translateY(10px);
-    transition:opacity .5s ease, transform .5s ease;
+  .m2-ghost{bottom:-6%;left:-8%;font-size:clamp(160px,46vw,320px);transform:rotate(4deg);color:rgba(255,255,255,.07);-webkit-text-stroke:1px rgba(255,255,255,.16);}
+  .m2-bar{position:absolute;left:-10%;top:20%;width:120%;height:2px;
+    background:linear-gradient(90deg,transparent,rgba(24,163,80,.7),transparent);
+    transform:rotate(8deg);z-index:0;}
+  .m2 .content{text-align:left;}
+  .m2 .line{font-size:clamp(21px,6vw,29px);font-weight:700;color:#d8d8d4;line-height:1.42;margin:0 0 20px;}
+  .m2 .line.strong{
+    font-weight:900;color:var(--white);font-size:clamp(24px,7vw,34px);
+    padding-left:18px;border-left:3px solid var(--lime);margin-top:30px;
   }
-  .narrative .line.strong.in span{opacity:1;transform:translateY(0);}
+  .m2 .line.strong .lime{color:var(--lime);}
 
-  /* ---------- M4 reveal ---------- */
-  .detail-stage{
-    position:relative;width:100%;max-width:320px;aspect-ratio:3/4;
-    margin:8px auto 30px;border-radius:22px;overflow:hidden;background:#050505;
-    box-shadow:0 30px 60px -24px rgba(0,0,0,.7);
+  /* ---------- M3 emotional ---------- */
+  .m3{background:var(--black);}
+  .m3-glow{position:absolute;left:50%;top:50%;width:140%;aspect-ratio:1;transform:translate(-50%,-50%);
+    background:radial-gradient(circle, rgba(24,163,80,.35), transparent 55%);z-index:0;filter:blur(4px);}
+  .m3-bar{position:absolute;left:-10%;top:46%;width:120%;height:2px;
+    background:linear-gradient(90deg,transparent,rgba(214,255,74,.5),transparent);
+    transform:rotate(-6deg);z-index:1;}
+  .m3 .pre{font-size:clamp(16px,4.6vw,19px);color:#c8c8c4;font-weight:600;margin-bottom:14px;}
+  .m3 .huge{font-size:clamp(42px,13vw,84px);}
+  .m3 .thanks{font-size:clamp(15px,4.2vw,18px);color:#bdbdb9;font-weight:500;line-height:1.65;max-width:360px;margin:26px auto 0;}
+
+  /* ---------- M4 revelação ---------- */
+  .m4{background:var(--black);padding-top:110px;padding-bottom:70px;}
+  .m4-ghost{top:6%;left:50%;transform:translateX(-50%) rotate(-3deg);
+    font-size:clamp(70px,20vw,170px);white-space:normal;text-align:center;width:100%;z-index:0;}
+  .m4-stage{position:relative;z-index:2;width:100%;max-width:340px;margin:10px auto 26px;}
+  .m4-shoe-wrap{position:relative;aspect-ratio:4/5;border-radius:26px;overflow:hidden;
+    background:linear-gradient(160deg,#101010,#050505);
+    box-shadow:0 34px 70px -26px rgba(0,0,0,.75), inset 0 0 0 1px rgba(255,255,255,.06);}
+  .m4-shoe-wrap img{position:absolute;left:50%;top:52%;width:112%;transform:translate(-50%,-50%) rotate(-6deg);}
+  .m4-tiles{display:flex;gap:10px;margin-top:12px;}
+  .m4-tile{flex:1;aspect-ratio:1;border-radius:12px;overflow:hidden;position:relative;
+    box-shadow:0 12px 24px -14px rgba(0,0,0,.7);}
+  .m4-tile img{width:100%;height:100%;object-fit:cover;}
+  .m4-tile span{
+    position:absolute;left:8px;bottom:7px;font-size:9px;letter-spacing:.14em;
+    text-transform:uppercase;font-weight:800;color:var(--lime);text-shadow:0 1px 4px rgba(0,0,0,.8);
   }
-  .detail-frame{
-    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-    opacity:0;transform:scale(1.05);
-    transition:opacity 1s ease, transform 1.4s ease;
-  }
-  .detail-frame.active{opacity:1;transform:scale(1);}
-  .detail-frame[data-step="3"]{object-fit:contain;background:#0a0a0a;}
-  .detail-caption{
-    position:absolute;left:16px;bottom:14px;font-size:11px;letter-spacing:.22em;
-    text-transform:uppercase;font-weight:800;color:var(--lime);
-    opacity:0;transition:opacity .5s ease;
-  }
-  .detail-caption.show{opacity:1;}
+  .m4 .content{position:relative;z-index:2;}
+  .m4 .huge{font-size:clamp(40px,12vw,68px);}
 
   /* ---------- M5 spin ---------- */
-  .spin-toggle{display:flex;gap:8px;justify-content:center;margin:2px 0 26px;}
+  .m5{background:var(--black);}
+  .m5-ghost{bottom:-4%;right:-6%;font-size:clamp(120px,34vw,260px);transform:rotate(-4deg);}
+  .spin-toggle{display:flex;gap:8px;justify-content:center;margin:22px 0 24px;position:relative;z-index:2;}
   .spin-toggle button{
     background:transparent;border:1px solid rgba(255,255,255,.22);color:#aaa;
     font-weight:800;font-size:12px;letter-spacing:.08em;padding:9px 20px;
     border-radius:999px;cursor:pointer;transition:all .25s ease;font-family:inherit;
   }
-  .spin-toggle button.active{background:var(--white);color:#0a0a0a;border-color:var(--white);}
-  .spin-wrap{width:100%;max-width:320px;margin:0 auto;}
+  .spin-toggle button.active{background:var(--lime);color:#0a0a0a;border-color:var(--lime);}
+  .spin-wrap{width:100%;max-width:300px;margin:0 auto;position:relative;z-index:2;}
+  .spin-frame{
+    position:relative;padding:3px;border-radius:26px;
+    background:linear-gradient(160deg,rgba(24,163,80,.55),rgba(255,255,255,.06) 40%,rgba(214,255,74,.35));
+  }
   .spin{
-    position:relative;aspect-ratio:340/604;border-radius:22px;overflow:hidden;
-    background:#0d0d0d;touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none;
-    box-shadow:0 30px 60px -24px rgba(0,0,0,.7);
+    position:relative;aspect-ratio:340/604;border-radius:24px;overflow:hidden;
+    background:#0a0a0a;touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none;
   }
   .spin:active{cursor:grabbing;}
   .spin img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;transition:opacity .25s ease;}
   .spin-badge{
-    position:absolute;top:14px;right:14px;background:rgba(10,10,10,.55);
+    position:absolute;top:14px;right:14px;background:rgba(6,6,6,.6);
     border:1px solid rgba(255,255,255,.15);color:var(--lime);font-size:10px;font-weight:800;
     letter-spacing:.08em;padding:5px 10px;border-radius:999px;text-transform:uppercase;z-index:3;
   }
   .spin-hint{
     position:absolute;left:50%;bottom:16px;transform:translateX(-50%);
-    display:flex;align-items:center;gap:7px;background:rgba(10,10,10,.6);backdrop-filter:blur(4px);
+    display:flex;align-items:center;gap:7px;background:rgba(6,6,6,.65);backdrop-filter:blur(4px);
     border:1px solid rgba(255,255,255,.15);border-radius:999px;padding:8px 14px;
     font-size:11px;letter-spacing:.05em;text-transform:uppercase;font-weight:700;color:#fff;
     white-space:nowrap;transition:opacity .4s ease;pointer-events:none;opacity:0;z-index:3;
@@ -189,26 +193,39 @@
   .spin-hint.show{opacity:1;}
   .spin-loading{
     position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-    flex-direction:column;gap:10px;background:rgba(5,5,5,.6);backdrop-filter:blur(2px);
+    flex-direction:column;gap:10px;background:rgba(4,4,4,.6);backdrop-filter:blur(2px);
     transition:opacity .4s ease;font-size:11px;letter-spacing:.08em;text-transform:uppercase;
     color:#ccc;font-weight:700;z-index:4;
   }
-  .spin-loading .ring{
-    width:24px;height:24px;border-radius:50%;border:2px solid rgba(255,255,255,.25);
-    border-top-color:var(--lime);animation:ringspin .8s linear infinite;
-  }
+  .spin-loading .ring{width:24px;height:24px;border-radius:50%;border:2px solid rgba(255,255,255,.25);
+    border-top-color:var(--lime);animation:ringspin .8s linear infinite;}
   .spin-loading.hidden{opacity:0;pointer-events:none;}
   @keyframes ringspin{to{transform:rotate(360deg);}}
 
+  /* ---------- M6 closing ---------- */
+  .m6{background:var(--black);}
+  .m6-ghost{bottom:-10%;left:50%;transform:translateX(-50%);font-size:clamp(160px,50vw,420px);white-space:normal;text-align:center;width:100%;}
+  .m6 .pre{font-size:clamp(17px,4.6vw,20px);color:#d0d0cc;font-weight:600;margin-bottom:18px;}
+  .m6 .huge{font-size:clamp(40px,12.5vw,80px);}
+  .m6 .sign{font-size:clamp(14px,3.8vw,16px);color:var(--gray);margin-top:24px;line-height:1.7;}
+  .m6 .sign b{color:var(--white);font-weight:800;}
+
   /* ---------- desktop ---------- */
   @media (min-width:900px){
-    .wrap{max-width:640px;}
-    .narrative .line{max-width:520px;}
-    .mid{max-width:460px;}
-    .giant-num{font-size:clamp(220px,22vw,360px);}
-    .giant-line{font-size:clamp(52px,8vw,92px);}
-    .detail-stage{max-width:420px;}
-    .spin-wrap{max-width:400px;}
+    section.m{padding:110px 60px;}
+    .content{max-width:640px;}
+    .m2 .line{max-width:520px;}
+    .hero-m .content{max-width:640px;}
+    .hero-shoe{width:min(40vw,520px);right:2%;}
+    .hero-diag{clip-path:polygon(0 0, 42% 0, 20% 100%, 0 100%);}
+    .m4-inner{display:flex;align-items:center;gap:64px;text-align:left;max-width:1040px;margin:0 auto;}
+    .m4-stage{max-width:380px;margin:0;flex-shrink:0;}
+    .m4-tiles{max-width:380px;margin-left:0;margin-right:0;}
+    .m4 .content{max-width:420px;margin:0;text-align:left;}
+    .m4 .kicker{margin-left:0;}
+    .m4 .support{margin-left:0;}
+    .spin-wrap{max-width:340px;}
+    .huge{font-size:clamp(46px,7vw,88px);}
   }
 </style>
 </head>
@@ -216,87 +233,110 @@
 
 <div class="rail" aria-hidden="true"><div class="track"></div><div class="fill" id="railFill"></div><div class="dot" id="railDot"></div></div>
 
-<!-- MOMENTO 01 — 20 ANOS -->
+<!-- M1 — HERO -->
 <section class="m hero-m" id="m1">
-  <div class="brandmark">MAXINUTRI</div>
-  <div class="giant-num">20</div>
-  <h1 class="tagline">20 anos.<br>Cada passo nos trouxe até aqui.</h1>
-  <div class="seedline"></div>
+  <div class="hero-diag" aria-hidden="true"></div>
+  <div class="ghost hero-ghost" aria-hidden="true">20</div>
+  <div class="hero-glow" aria-hidden="true"></div>
+  <img class="hero-shoe" src="assets/mxn-black.jpg" alt="MXN RUN" loading="eager">
+  <div class="content">
+    <div class="kicker">Maxinutri · 20 anos</div>
+    <h1 class="hero-headline">
+      <span>Cada passo</span>
+      <span>nos trouxe</span>
+      <span class="lime">até aqui.</span>
+    </h1>
+    <p class="support" style="margin-left:0;text-align:left;">20 anos de caminhada.<br>Um presente que carrega essa história.</p>
+  </div>
   <div class="scrolldown">role</div>
 </section>
 
-<!-- MOMENTO 02 — A NOSSA CAMINHADA -->
-<section class="m" id="m2">
-  <div class="wrap narrative">
-    <p class="line reveal">Há 20 anos<br>começamos uma jornada.</p>
-    <p class="line reveal">De lá para cá,<br>muita coisa mudou.</p>
-    <p class="line reveal">Crescemos. Evoluímos.<br>Chegamos a novos lugares.</p>
-    <p class="line strong reveal" id="soloLine">
-      <span style="transition-delay:.05s">Mas</span> <span style="transition-delay:.11s">nada</span> <span style="transition-delay:.17s">disso</span> <span style="transition-delay:.23s">teria</span><br>
-      <span style="transition-delay:.29s">acontecido</span> <span style="transition-delay:.35s">sozinhos.</span>
-    </p>
+<!-- M2 — CAMINHADA -->
+<section class="m m2" id="m2">
+  <div class="speedlines" aria-hidden="true"></div>
+  <div class="m2-bar" aria-hidden="true"></div>
+  <div class="ghost m2-ghost" aria-hidden="true">20</div>
+  <div class="content">
+    <div class="kicker">A caminhada</div>
+    <p class="line reveal">Há 20 anos, começamos uma jornada.</p>
+    <p class="line reveal">De lá para cá, seguimos em frente.<br>Crescemos. Evoluímos.</p>
+    <p class="line strong reveal">E nunca caminhamos <span class="lime">sozinhos.</span></p>
   </div>
 </section>
 
-<!-- MOMENTO 03 — VOCÊ FAZ PARTE -->
-<section class="m" id="m3">
-  <p class="mid reveal">Nenhuma história como a nossa<br>é construída sozinha.</p>
-  <h2 class="giant-line reveal" id="withYouLine">Em muitos desses passos,<br><span class="accent">você esteve conosco.</span></h2>
-  <p class="thanks reveal">Obrigado por acreditar.<br>Obrigado por construir.<br>Obrigado por caminhar conosco.</p>
+<!-- M3 — VOCÊ FAZ PARTE -->
+<section class="m m3" id="m3">
+  <div class="m3-glow" aria-hidden="true"></div>
+  <div class="m3-bar" aria-hidden="true"></div>
+  <div class="content">
+    <p class="pre reveal" id="preLine">Em muitos desses passos,</p>
+    <h2 class="huge reveal" id="withYouLine">Você esteve<br><span class="lime">conosco.</span></h2>
+    <p class="thanks reveal">Este não é apenas um presente.<br>É um agradecimento a quem faz parte da nossa história.</p>
+  </div>
 </section>
 
-<!-- MOMENTO 04 — REVELAÇÃO DO MXN RUN -->
-<section class="m" id="m4">
-  <p class="mid seq">Algumas histórias ficam na memória.</p>
-  <p class="mid soft seq">Outras, a gente leva com a gente.</p>
-
-  <div class="detail-stage">
-    <img class="detail-frame active" data-step="0" src="assets/detail-logo.jpg" alt="Detalhe do logo MXN" loading="lazy">
-    <img class="detail-frame" data-step="1" src="assets/detail-sola.jpg" alt="Detalhe da sola do MXN RUN" loading="lazy">
-    <img class="detail-frame" data-step="2" src="assets/detail-textura.jpg" alt="Detalhe da textura do MXN RUN" loading="lazy">
-    <img class="detail-frame" data-step="3" src="assets/mxn-black.jpg" alt="MXN RUN completo" loading="lazy">
-    <div class="detail-caption show" id="detailCaption">Logo.</div>
+<!-- M4 — REVELAÇÃO -->
+<section class="m m4" id="m4">
+  <div class="ghost m4-ghost" aria-hidden="true">MXN RUN</div>
+  <div class="m4-inner">
+    <div class="m4-stage seq">
+      <div class="m4-shoe-wrap">
+        <img src="assets/mxn-black.jpg" alt="MXN RUN completo" loading="lazy">
+      </div>
+      <div class="m4-tiles">
+        <div class="m4-tile"><img src="assets/detail-logo.jpg" alt="Logo MXN" loading="lazy"><span>Logo</span></div>
+        <div class="m4-tile"><img src="assets/detail-sola.jpg" alt="Sola MXN RUN" loading="lazy"><span>Sola</span></div>
+        <div class="m4-tile"><img src="assets/detail-textura.jpg" alt="Textura MXN RUN" loading="lazy"><span>Textura</span></div>
+      </div>
+    </div>
+    <div class="content seq">
+      <div class="kicker">O presente</div>
+      <h2 class="huge">MXN Run.</h2>
+      <p class="support">Não apenas um presente.<br><b>Um símbolo da nossa caminhada.</b></p>
+    </div>
   </div>
-
-  <h2 class="giant-line seq">MXN RUN</h2>
-  <p class="mid seq">Não apenas um presente.<br><span class="accent">Um símbolo da nossa caminhada.</span></p>
 </section>
 
-<!-- MOMENTO 05 — 360° -->
-<section class="m" id="m5">
-  <div class="kicker">explore o mxn run</div>
-  <div class="spin-toggle">
-    <button type="button" class="active" data-color="black">PRETO</button>
-    <button type="button" data-color="white">BRANCO</button>
-  </div>
-  <div class="spin-wrap">
-    <div class="spin" id="spinEl">
-      <span class="spin-badge">360°</span>
-      <img class="spin-img" id="spinImg" src="assets/spin-black/f01.jpg" alt="MXN RUN — arraste para girar" draggable="false">
-      <div class="spin-loading" id="spinLoading"><div class="ring"></div>carregando</div>
-      <div class="spin-hint" id="spinHint">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
-        arraste para girar
+<!-- M5 — 360° -->
+<section class="m m5" id="m5">
+  <div class="ghost m5-ghost" aria-hidden="true">360</div>
+  <div class="content">
+    <div class="kicker">Explore o mxn run</div>
+    <div class="spin-toggle">
+      <button type="button" class="active" data-color="black">PRETO</button>
+      <button type="button" data-color="white">BRANCO</button>
+    </div>
+    <div class="spin-wrap">
+      <div class="spin-frame">
+        <div class="spin" id="spinEl">
+          <span class="spin-badge">360°</span>
+          <img class="spin-img" id="spinImg" src="assets/spin-black/f01.jpg" alt="MXN RUN — arraste para girar" draggable="false">
+          <div class="spin-loading" id="spinLoading"><div class="ring"></div>carregando</div>
+          <div class="spin-hint" id="spinHint">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
+            arraste para girar
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- MOMENTO 06 — FECHAMENTO -->
-<section class="m" id="m6">
-  <p class="mid reveal">20 anos nos trouxeram até aqui.</p>
-  <p class="mid soft reveal">Mas ainda temos muitos passos pela frente.</p>
-  <p class="thanks reveal">Obrigado por fazer parte dessa caminhada.</p>
-  <h2 class="giant-line reveal">20 ANOS<br><span class="accent">MAXINUTRI</span></h2>
-  <p class="mid reveal">Cada passo nos trouxe até aqui.</p>
-  <div class="signature reveal">O próximo passo começa agora.<br><b>Maxinutri.</b></div>
+<!-- M6 — FECHAMENTO -->
+<section class="m m6" id="m6">
+  <div class="ghost m6-ghost" aria-hidden="true">20</div>
+  <div class="content">
+    <p class="pre reveal">Obrigado por caminhar conosco.</p>
+    <h2 class="huge reveal">20 anos<br><span class="lime">Maxinutri.</span></h2>
+    <p class="sign reveal">O próximo passo começa agora.<br><b>Maxinutri.</b></p>
+  </div>
 </section>
 
 <script>
 (function(){
   var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---- side rail progress ---- */
+  /* rail progress */
   var railFill = document.getElementById('railFill');
   var railDot = document.getElementById('railDot');
   function onScroll(){
@@ -309,79 +349,38 @@
   document.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  /* ---- generic reveal ---- */
+  /* reveal on scroll */
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){ if (e.isIntersecting) e.target.classList.add('in'); });
   }, { threshold: 0.35 });
   document.querySelectorAll('section.m').forEach(function(section){
-    section.querySelectorAll('.reveal').forEach(function(el, i){
+    section.querySelectorAll('.reveal, .seq').forEach(function(el, i){
       el.style.transitionDelay = (i % 4) * 0.12 + 's';
       io.observe(el);
     });
   });
 
-  /* ---- personalization via ?nome= ---- */
+  /* personalization via ?nome= */
   (function personalize(){
     var params = new URLSearchParams(location.search);
     var nome = params.get('nome');
     if (!nome) return;
     nome = nome.trim();
     if (!/^[\p{L}\s'-]{1,24}$/u.test(nome)) return;
-    var el = document.getElementById('withYouLine');
-    if (!el) return;
-    el.textContent = '';
-    el.appendChild(document.createTextNode(nome + ','));
-    el.appendChild(document.createElement('br'));
+    var pre = document.getElementById('preLine');
+    var main = document.getElementById('withYouLine');
+    if (!pre || !main) return;
+    pre.textContent = nome + ',';
+    main.textContent = '';
+    main.appendChild(document.createTextNode('Obrigado por'));
+    main.appendChild(document.createElement('br'));
     var span = document.createElement('span');
-    span.className = 'accent';
-    span.textContent = 'essa história também tem os seus passos.';
-    el.appendChild(span);
+    span.className = 'lime';
+    span.textContent = 'caminhar conosco.';
+    main.appendChild(span);
   })();
 
-  /* ---- M4: progressive product reveal ---- */
-  (function(){
-    var section = document.getElementById('m4');
-    var frames = Array.prototype.slice.call(section.querySelectorAll('.detail-frame'));
-    var caption = document.getElementById('detailCaption');
-    var labels = ['Logo.', 'Sola.', 'Textura.', ''];
-    var seqEls = section.querySelectorAll('.seq');
-    var started = false;
-
-    function finish(){
-      seqEls.forEach(function(el, i){
-        setTimeout(function(){ el.classList.add('in'); }, i * 90);
-      });
-    }
-
-    function play(){
-      if (started) return;
-      started = true;
-      if (reduced) {
-        frames.forEach(function(f, i){ f.classList.toggle('active', i === frames.length - 1); });
-        caption.classList.remove('show');
-        finish();
-        return;
-      }
-      var step = 0;
-      var iv = setInterval(function(){
-        step++;
-        frames.forEach(function(f, i){ f.classList.toggle('active', i === step); });
-        if (labels[step]) { caption.textContent = labels[step]; caption.classList.add('show'); }
-        else { caption.classList.remove('show'); }
-        if (step >= frames.length - 1) {
-          clearInterval(iv);
-          finish();
-        }
-      }, 850);
-    }
-
-    var mIo = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){ if (e.isIntersecting) play(); });
-    }, { threshold: 0.5 });
-    mIo.observe(section);
-  })();
-
-  /* ---- M5: 360 spin viewer with black/white toggle ---- */
+  /* 360 spin viewer with black/white toggle */
   (function(){
     var SETS = {
       black: { prefix: 'assets/spin-black/f', count: 32 },
@@ -420,10 +419,7 @@
         im.decoding = 'async';
         im.onload = im.onerror = function(){
           loadedCount[set]++;
-          if (loadedCount[set] >= list.length) {
-            ready[set] = true;
-            if (onDone) onDone();
-          }
+          if (loadedCount[set] >= list.length) { ready[set] = true; if (onDone) onDone(); }
         };
         im.src = src;
       });
