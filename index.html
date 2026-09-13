@@ -2,16 +2,16 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MXN WEAR — A história por trás do movimento</title>
-<meta name="description" content="Da suplementação ao movimento. Conheça a história da MXN WEAR, criada pela Maxinutri.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a0a0a">
+<title>MXN RUN — 20 Anos Maxinutri</title>
+<meta name="description" content="20 anos Maxinutri. Cada passo nos trouxe até aqui. Obrigado por caminhar conosco.">
 <style>
   :root{
     --black:#0a0a0a;
-    --ink:#141414;
+    --ink:#131313;
     --white:#f7f7f5;
-    --accent:#1f8a4f;
-    --accent-2:#2fae66;
+    --green:#1f8a4f;
     --lime:#cdfa3c;
     --gray:#8a8a8a;
   }
@@ -24,386 +24,448 @@
     overflow-x:hidden;
     -webkit-font-smoothing:antialiased;
   }
-  .wrap{max-width:600px;margin:0 auto;padding:0 24px;}
+  .wrap{max-width:520px;margin:0 auto;padding:0 28px;}
+  img{-webkit-user-drag:none;}
 
-  /* progress bar */
-  #progress{
-    position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--lime));
-    width:0%;z-index:100;transition:width .1s linear;
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;}
+    html{scroll-behavior:auto;}
   }
 
-  /* HERO */
-  .hero{
-    min-height:100vh;
-    display:flex;flex-direction:column;justify-content:center;align-items:center;
+  noscript .seq, noscript .reveal { opacity:1 !important; transform:none !important; }
+
+  /* ---------- side path rail ---------- */
+  .rail{
+    position:fixed;right:12px;top:50%;transform:translateY(-50%);
+    height:46vh;width:2px;z-index:60;
+  }
+  .rail .track{position:absolute;inset:0;background:rgba(255,255,255,.12);border-radius:2px;}
+  .rail .fill{
+    position:absolute;left:0;top:0;width:100%;height:0%;
+    background:linear-gradient(180deg,#fff,var(--lime));border-radius:2px;
+  }
+  .rail .dot{
+    position:absolute;left:50%;top:0%;width:7px;height:7px;
+    margin-left:-3.5px;margin-top:-3.5px;border-radius:50%;background:var(--lime);
+    box-shadow:0 0 10px 3px rgba(205,250,60,.55);
+  }
+  @media (max-width:480px){ .rail{right:8px;height:38vh;} }
+
+  /* ---------- shared type ---------- */
+  section.m{
+    min-height:100vh;min-height:100svh;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
     text-align:center;position:relative;
-    padding:80px 24px 40px;
+    padding:90px 26px;scroll-snap-align:start;
+  }
+  html{scroll-snap-type:y proximity;}
+
+  .kicker{
+    font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--gray);
+    font-weight:800;margin-bottom:20px;
+  }
+  .mid{
+    font-size:clamp(19px,5.6vw,25px);line-height:1.5;font-weight:600;color:#e9e9e9;
+    max-width:340px;
+  }
+  .mid.soft{color:var(--gray);font-weight:500;margin-top:10px;}
+  .mid + .mid{margin-top:14px;}
+  .accent{color:var(--lime);}
+  .giant-line{
+    font-weight:900;font-size:clamp(38px,11vw,64px);line-height:1.06;letter-spacing:-.01em;
+    margin:26px 0;
+  }
+  .thanks{
+    font-size:clamp(16px,4.4vw,19px);line-height:1.7;color:#cfcfcf;font-weight:600;
+    margin-top:22px;
+  }
+  .signature{
+    font-size:clamp(15px,4vw,18px);color:var(--gray);line-height:1.7;margin-top:8px;
+  }
+  .signature b{color:var(--white);font-weight:800;}
+
+  .seq, .reveal{
+    opacity:0;transform:translateY(24px);
+    transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1);
+  }
+  .seq.in, .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* ---------- M1 hero ---------- */
+  .hero-m{
     background:
-      linear-gradient(180deg, rgba(10,10,10,.45) 0%, rgba(10,10,10,.75) 55%, var(--black) 100%),
-      radial-gradient(circle at 85% 12%, rgba(205,250,60,.18), transparent 40%),
-      url('assets/mxn-black.jpg');
-    background-size:cover;
-    background-position:center 30%;
+      radial-gradient(circle at 50% 18%, rgba(31,138,79,.16), transparent 45%),
+      radial-gradient(circle at 80% 85%, rgba(205,250,60,.08), transparent 40%),
+      var(--black);
   }
-  .hero .stripe{
-    position:absolute;inset:0;
-    background:repeating-linear-gradient(115deg, transparent 0 60px, rgba(255,255,255,.03) 60px 62px);
-    pointer-events:none;
+  .brandmark{
+    font-size:11px;letter-spacing:.32em;color:var(--gray);font-weight:800;
+    margin-bottom:34px;animation:fadeIn .9s ease both;
   }
-  .eyebrow{
-    font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--gray);
-    margin-bottom:18px;font-weight:700;
-  }
-  .eyebrow span{color:var(--accent);}
-  .logo-mark{
-    font-weight:900;font-size:clamp(48px,15vw,88px);line-height:.95;letter-spacing:-.02em;
-    background:linear-gradient(180deg,#fff, #cfcfcf);
+  .giant-num{
+    font-weight:900;font-size:clamp(140px,44vw,220px);line-height:.85;
+    background:linear-gradient(180deg,#fff,#c9c9c9 60%,#8f8f8f);
     -webkit-background-clip:text;background-clip:text;color:transparent;
+    animation:bigIn 1.15s cubic-bezier(.16,1,.3,1) .25s both;
   }
-  .logo-mark .wear{
-    display:block;font-size:.36em;letter-spacing:.35em;color:var(--accent);
-    -webkit-text-fill-color:var(--accent);margin-top:6px;
+  .tagline{
+    font-weight:800;font-size:clamp(19px,5.6vw,26px);line-height:1.4;margin-top:22px;
+    animation:fadeIn 1s ease .95s both;
   }
-  .hero-tag{
-    margin-top:26px;font-size:17px;color:#c9c9c9;max-width:320px;line-height:1.5;
+  .seedline{
+    width:2px;height:0;margin:30px auto 0;border-radius:2px;
+    background:linear-gradient(180deg,rgba(255,255,255,.5),var(--lime));
+    animation:growLine 1s ease 1.7s forwards;
   }
-  .hero-tag b{color:var(--white);}
-  .scroll-cue{
-    position:absolute;bottom:34px;left:50%;transform:translateX(-50%);
-    display:flex;flex-direction:column;align-items:center;gap:8px;
-    font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);
+  .scrolldown{
+    position:absolute;bottom:30px;left:50%;transform:translateX(-50%);
+    font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--gray);
+    animation:fadeIn 1s ease 2s both;
   }
-  .scroll-cue .line{width:1px;height:34px;background:linear-gradient(var(--gray),transparent);animation:pulse 1.8s infinite;}
-  @keyframes pulse{0%,100%{opacity:.3;}50%{opacity:1;}}
+  @keyframes bigIn{from{opacity:0;transform:scale(.72) translateY(24px);filter:blur(10px);}to{opacity:1;transform:scale(1) translateY(0);filter:blur(0);}}
+  @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+  @keyframes growLine{to{height:70px;}}
 
-  /* SECTIONS */
-  section{padding:110px 0;position:relative;}
-  .reveal{
-    opacity:0;transform:translateY(28px);
-    transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1);
+  /* ---------- M2 caminhada ---------- */
+  .narrative .line{
+    font-size:clamp(19px,5.8vw,27px);line-height:1.5;font-weight:700;color:#dcdcdc;
+    max-width:360px;margin:0 auto 30px;
   }
-  .reveal.in{opacity:1;transform:translateY(0);}
+  .narrative .line.strong{color:var(--white);font-weight:900;}
+  .narrative .line.strong span{
+    display:inline-block;opacity:0;transform:translateY(10px);
+    transition:opacity .5s ease, transform .5s ease;
+  }
+  .narrative .line.strong.in span{opacity:1;transform:translateY(0);}
 
-  .q{
-    font-weight:900;font-size:clamp(26px,7vw,34px);line-height:1.25;
-    border-left:4px solid var(--accent);padding-left:20px;
+  /* ---------- M4 reveal ---------- */
+  .detail-stage{
+    position:relative;width:100%;max-width:320px;aspect-ratio:3/4;
+    margin:8px auto 30px;border-radius:22px;overflow:hidden;background:#050505;
+    box-shadow:0 30px 60px -24px rgba(0,0,0,.7);
   }
-  .a{
-    font-weight:900;font-size:clamp(30px,8vw,40px);color:var(--lime);margin-top:22px;
+  .detail-frame{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    opacity:0;transform:scale(1.05);
+    transition:opacity 1s ease, transform 1.4s ease;
   }
+  .detail-frame.active{opacity:1;transform:scale(1);}
+  .detail-frame[data-step="3"]{object-fit:contain;background:#0a0a0a;}
+  .detail-caption{
+    position:absolute;left:16px;bottom:14px;font-size:11px;letter-spacing:.22em;
+    text-transform:uppercase;font-weight:800;color:var(--lime);
+    opacity:0;transition:opacity .5s ease;
+  }
+  .detail-caption.show{opacity:1;}
 
-  .lead{
-    font-size:clamp(19px,5.2vw,23px);line-height:1.55;font-weight:500;color:#e6e6e6;
+  /* ---------- M5 spin ---------- */
+  .spin-toggle{display:flex;gap:8px;justify-content:center;margin:2px 0 26px;}
+  .spin-toggle button{
+    background:transparent;border:1px solid rgba(255,255,255,.22);color:#aaa;
+    font-weight:800;font-size:12px;letter-spacing:.08em;padding:9px 20px;
+    border-radius:999px;cursor:pointer;transition:all .25s ease;font-family:inherit;
   }
-  .lead + .lead{margin-top:26px;}
-  .lead .hl{color:var(--white);font-weight:800;}
-
-  .moments{
-    display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:36px;
-  }
-  .moment{
-    background:var(--ink);border:1px solid rgba(255,255,255,.08);
-    border-radius:16px;padding:22px 16px;text-align:center;
-    display:flex;flex-direction:column;align-items:center;gap:10px;
-  }
-  .moment svg{width:30px;height:30px;stroke:var(--accent);}
-  .moment span{font-weight:700;font-size:14px;letter-spacing:.02em;color:#dedede;}
-
-  .showcase-head{text-align:center;margin-bottom:38px;}
-  .showcase-head .kicker{
-    font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--lime);font-weight:800;
-  }
-  .showcase-head h3{
-    font-size:clamp(24px,7vw,32px);font-weight:900;margin-top:10px;line-height:1.2;
-  }
-  .shoes{display:flex;flex-direction:column;gap:22px;}
-  .shoe-card{
-    background:var(--ink);border:1px solid rgba(255,255,255,.08);
-    border-radius:20px;overflow:hidden;
-  }
-  .shoe-card .cap{
-    padding:16px 18px 20px;display:flex;justify-content:space-between;align-items:center;
-  }
-  .shoe-card .cap b{font-size:15px;font-weight:800;}
-  .shoe-card .cap span{font-size:12px;color:var(--gray);letter-spacing:.03em;}
-
+  .spin-toggle button.active{background:var(--white);color:#0a0a0a;border-color:var(--white);}
+  .spin-wrap{width:100%;max-width:320px;margin:0 auto;}
   .spin{
-    position:relative;aspect-ratio:340/604;background:#0d0d0d;
-    touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none;
+    position:relative;aspect-ratio:340/604;border-radius:22px;overflow:hidden;
+    background:#0d0d0d;touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none;
+    box-shadow:0 30px 60px -24px rgba(0,0,0,.7);
   }
   .spin:active{cursor:grabbing;}
-  .spin img{
-    width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;
-    -webkit-user-drag:none;
+  .spin img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;transition:opacity .25s ease;}
+  .spin-badge{
+    position:absolute;top:14px;right:14px;background:rgba(10,10,10,.55);
+    border:1px solid rgba(255,255,255,.15);color:var(--lime);font-size:10px;font-weight:800;
+    letter-spacing:.08em;padding:5px 10px;border-radius:999px;text-transform:uppercase;z-index:3;
   }
   .spin-hint{
     position:absolute;left:50%;bottom:16px;transform:translateX(-50%);
-    display:flex;align-items:center;gap:7px;
-    background:rgba(10,10,10,.6);backdrop-filter:blur(4px);
-    border:1px solid rgba(255,255,255,.15);border-radius:999px;
-    padding:8px 14px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;
-    font-weight:700;color:#fff;white-space:nowrap;
-    transition:opacity .4s ease;pointer-events:none;
+    display:flex;align-items:center;gap:7px;background:rgba(10,10,10,.6);backdrop-filter:blur(4px);
+    border:1px solid rgba(255,255,255,.15);border-radius:999px;padding:8px 14px;
+    font-size:11px;letter-spacing:.05em;text-transform:uppercase;font-weight:700;color:#fff;
+    white-space:nowrap;transition:opacity .4s ease;pointer-events:none;opacity:0;z-index:3;
   }
-  .spin-hint svg{width:15px;height:15px;stroke:var(--lime);flex-shrink:0;}
-  .spin-hint.hidden{opacity:0;}
-  .spin-badge{
-    position:absolute;top:14px;right:14px;
-    background:rgba(10,10,10,.55);border:1px solid rgba(255,255,255,.15);
-    color:var(--lime);font-size:10px;font-weight:800;letter-spacing:.08em;
-    padding:5px 10px;border-radius:999px;text-transform:uppercase;
+  .spin-hint svg{width:14px;height:14px;stroke:var(--lime);flex-shrink:0;}
+  .spin-hint.show{opacity:1;}
+  .spin-loading{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    flex-direction:column;gap:10px;background:rgba(5,5,5,.6);backdrop-filter:blur(2px);
+    transition:opacity .4s ease;font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+    color:#ccc;font-weight:700;z-index:4;
   }
+  .spin-loading .ring{
+    width:24px;height:24px;border-radius:50%;border:2px solid rgba(255,255,255,.25);
+    border-top-color:var(--lime);animation:ringspin .8s linear infinite;
+  }
+  .spin-loading.hidden{opacity:0;pointer-events:none;}
+  @keyframes ringspin{to{transform:rotate(360deg);}}
 
-  .divider{
-    width:56px;height:5px;background:linear-gradient(90deg,var(--accent),var(--lime));
-    border-radius:3px;margin:0 auto 46px;
-  }
-
-  .big-statement{
-    font-weight:900;font-size:clamp(34px,10vw,52px);line-height:1.08;text-align:center;
-  }
-  .big-statement .out{color:var(--accent);}
-
-  .panel{
-    background:linear-gradient(160deg,#081a10,var(--black) 60%);
-    border-top:1px solid rgba(31,138,79,.35);
-    border-bottom:1px solid rgba(31,138,79,.35);
-  }
-
-  .closing{
-    text-align:center;padding:130px 0 90px;
-  }
-  .closing p{
-    font-size:clamp(18px,4.6vw,20px);color:#cfcfcf;line-height:1.6;max-width:420px;margin:0 auto 34px;
-  }
-  .closing .final{
-    font-weight:900;font-size:clamp(38px,12vw,64px);letter-spacing:-.01em;line-height:1;
-    background:linear-gradient(180deg,var(--lime),#8fd400);
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-  }
-  .closing .final small{
-    display:block;font-size:.28em;letter-spacing:.3em;color:var(--white);
-    -webkit-text-fill-color:var(--white);margin-top:14px;font-weight:800;
-  }
-
-  footer{
-    padding:48px 0 60px;text-align:center;border-top:1px solid rgba(255,255,255,.08);
-  }
-  footer .brand{font-weight:900;letter-spacing:.06em;font-size:15px;}
-  footer .brand span{color:var(--accent);}
-  footer .sub{margin-top:8px;font-size:12px;color:var(--gray);letter-spacing:.05em;}
-  footer .links{margin-top:22px;display:flex;justify-content:center;gap:18px;font-size:13px;color:#d0d0d0;font-weight:600;}
-
-  @media (min-width:640px){
-    .moments{grid-template-columns:repeat(4,1fr);}
-    .shoes{flex-direction:row;}
-    .shoe-card{flex:1;}
+  /* ---------- desktop ---------- */
+  @media (min-width:900px){
+    .wrap{max-width:640px;}
+    .narrative .line{max-width:520px;}
+    .mid{max-width:460px;}
+    .giant-num{font-size:clamp(220px,22vw,360px);}
+    .giant-line{font-size:clamp(52px,8vw,92px);}
+    .detail-stage{max-width:420px;}
+    .spin-wrap{max-width:400px;}
   }
 </style>
 </head>
 <body>
 
-<div id="progress"></div>
+<div class="rail" aria-hidden="true"><div class="track"></div><div class="fill" id="railFill"></div><div class="dot" id="railDot"></div></div>
 
-<section class="hero">
-  <div class="stripe"></div>
-  <div class="eyebrow">uma história da <span>MAXINUTRI</span></div>
-  <div class="logo-mark">MXN<span class="wear">WEAR</span></div>
-  <p class="hero-tag">Da suplementação ao movimento. <b>Isso é para você que faz parte da nossa história.</b></p>
-  <div class="scroll-cue"><span>role para descobrir</span><span class="line"></span></div>
+<!-- MOMENTO 01 — 20 ANOS -->
+<section class="m hero-m" id="m1">
+  <div class="brandmark">MAXINUTRI</div>
+  <div class="giant-num">20</div>
+  <h1 class="tagline">20 anos.<br>Cada passo nos trouxe até aqui.</h1>
+  <div class="seedline"></div>
+  <div class="scrolldown">role</div>
 </section>
 
-<section>
-  <div class="wrap">
-    <p class="q reveal">"Agora a Maxinutri é uma marca de roupas?"</p>
-    <p class="a reveal">Não exatamente.</p>
+<!-- MOMENTO 02 — A NOSSA CAMINHADA -->
+<section class="m" id="m2">
+  <div class="wrap narrative">
+    <p class="line reveal">Há 20 anos<br>começamos uma jornada.</p>
+    <p class="line reveal">De lá para cá,<br>muita coisa mudou.</p>
+    <p class="line reveal">Crescemos. Evoluímos.<br>Chegamos a novos lugares.</p>
+    <p class="line strong reveal" id="soloLine">
+      <span style="transition-delay:.05s">Mas</span> <span style="transition-delay:.11s">nada</span> <span style="transition-delay:.17s">disso</span> <span style="transition-delay:.23s">teria</span><br>
+      <span style="transition-delay:.29s">acontecido</span> <span style="transition-delay:.35s">sozinhos.</span>
+    </p>
   </div>
 </section>
 
-<section>
-  <div class="wrap">
-    <p class="lead reveal">A gente continua fazendo o que <span class="hl">sempre fez</span>: cuidando de pessoas por meio da suplementação.</p>
-    <p class="lead reveal">Mas, com o tempo, percebemos que a nossa marca também começou a acompanhar <span class="hl">outros momentos</span> da vida de quem está com a gente.</p>
-  </div>
+<!-- MOMENTO 03 — VOCÊ FAZ PARTE -->
+<section class="m" id="m3">
+  <p class="mid reveal">Nenhuma história como a nossa<br>é construída sozinha.</p>
+  <h2 class="giant-line reveal" id="withYouLine">Em muitos desses passos,<br><span class="accent">você esteve conosco.</span></h2>
+  <p class="thanks reveal">Obrigado por acreditar.<br>Obrigado por construir.<br>Obrigado por caminhar conosco.</p>
 </section>
 
-<section>
-  <div class="wrap">
-    <div class="divider"></div>
-    <div class="moments">
-      <div class="moment reveal">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5 17.5 17.5"/><path d="M4 8l2.5-2.5"/><path d="M15.5 4 20 8.5"/><path d="M8.5 20 4 15.5"/><path d="M19.5 15.5 15.5 19.5"/></svg>
-        <span>Nos treinos</span>
-      </div>
-      <div class="moment reveal">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
-        <span>Na rotina</span>
-      </div>
-      <div class="moment reveal">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16l20-6-3 3-3-1-4 4-3-1-3 3z"/><path d="M13 13l3 6-2 1-2-4"/></svg>
-        <span>Nas viagens</span>
-      </div>
-      <div class="moment reveal">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="17" cy="5" r="1.6" fill="currentColor" stroke="none"/><path d="M14 9l1.5 2 3 1 1.5 4"/><path d="M9 20l3-5 2-2-1-3-4 1-2 4"/></svg>
-        <span>Nos movimentos que fazem bem</span>
-      </div>
-    </div>
+<!-- MOMENTO 04 — REVELAÇÃO DO MXN RUN -->
+<section class="m" id="m4">
+  <p class="mid seq">Algumas histórias ficam na memória.</p>
+  <p class="mid soft seq">Outras, a gente leva com a gente.</p>
+
+  <div class="detail-stage">
+    <img class="detail-frame active" data-step="0" src="assets/detail-logo.jpg" alt="Detalhe do logo MXN" loading="lazy">
+    <img class="detail-frame" data-step="1" src="assets/detail-sola.jpg" alt="Detalhe da sola do MXN RUN" loading="lazy">
+    <img class="detail-frame" data-step="2" src="assets/detail-textura.jpg" alt="Detalhe da textura do MXN RUN" loading="lazy">
+    <img class="detail-frame" data-step="3" src="assets/mxn-black.jpg" alt="MXN RUN completo" loading="lazy">
+    <div class="detail-caption show" id="detailCaption">Logo.</div>
   </div>
+
+  <h2 class="giant-line seq">MXN RUN</h2>
+  <p class="mid seq">Não apenas um presente.<br><span class="accent">Um símbolo da nossa caminhada.</span></p>
 </section>
 
-<section>
-  <div class="wrap">
-    <div class="showcase-head reveal">
-      <div class="kicker">o presente que você recebeu</div>
-      <h3>Feito para acompanhar cada passo.</h3>
-    </div>
-    <div class="shoes">
-      <div class="shoe-card reveal">
-        <div class="spin" data-prefix="assets/spin-black/f" data-count="32" data-pad="2">
-          <span class="spin-badge">360°</span>
-          <img class="spin-img" src="assets/spin-black/f01.jpg" alt="Tênis MXN colorway preto e lima — arraste para girar" draggable="false">
-          <div class="spin-hint">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
-            arraste para girar
-          </div>
-        </div>
-        <div class="cap"><b>MXN</b><span>Preto &amp; Lima</span></div>
-      </div>
-      <div class="shoe-card reveal">
-        <div class="spin" data-prefix="assets/spin-white/f" data-count="31" data-pad="2">
-          <span class="spin-badge">360°</span>
-          <img class="spin-img" src="assets/spin-white/f01.jpg" alt="Tênis MXN colorway branco e verde — arraste para girar" draggable="false">
-          <div class="spin-hint">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
-            arraste para girar
-          </div>
-        </div>
-        <div class="cap"><b>MXN</b><span>Branco &amp; Verde</span></div>
+<!-- MOMENTO 05 — 360° -->
+<section class="m" id="m5">
+  <div class="kicker">explore o mxn run</div>
+  <div class="spin-toggle">
+    <button type="button" class="active" data-color="black">PRETO</button>
+    <button type="button" data-color="white">BRANCO</button>
+  </div>
+  <div class="spin-wrap">
+    <div class="spin" id="spinEl">
+      <span class="spin-badge">360°</span>
+      <img class="spin-img" id="spinImg" src="assets/spin-black/f01.jpg" alt="MXN RUN — arraste para girar" draggable="false">
+      <div class="spin-loading" id="spinLoading"><div class="ring"></div>carregando</div>
+      <div class="spin-hint" id="spinHint">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
+        arraste para girar
       </div>
     </div>
   </div>
 </section>
 
-<section class="panel">
-  <div class="wrap">
-    <p class="big-statement reveal">A <span class="out">MXN WEAR</span> nasceu desse desejo.</p>
-  </div>
+<!-- MOMENTO 06 — FECHAMENTO -->
+<section class="m" id="m6">
+  <p class="mid reveal">20 anos nos trouxeram até aqui.</p>
+  <p class="mid soft reveal">Mas ainda temos muitos passos pela frente.</p>
+  <p class="thanks reveal">Obrigado por fazer parte dessa caminhada.</p>
+  <h2 class="giant-line reveal">20 ANOS<br><span class="accent">MAXINUTRI</span></h2>
+  <p class="mid reveal">Cada passo nos trouxe até aqui.</p>
+  <div class="signature reveal">O próximo passo começa agora.<br><b>Maxinutri.</b></div>
 </section>
-
-<section>
-  <div class="wrap">
-    <p class="lead reveal">Não para a Maxinutri entrar no mercado da moda.<br>Nem para fazer da roupa mais um produto.</p>
-    <p class="lead reveal">Mas para criar uma forma de levar a <span class="hl">nossa essência</span> para outros momentos da rotina.</p>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <p class="lead reveal">Porque existe um momento em que uma marca deixa de estar apenas na prateleira.</p>
-    <p class="lead reveal">Ela passa a fazer parte da <span class="hl">rotina</span>, das <span class="hl">escolhas</span> e da <span class="hl">identidade</span> de quem acredita no que ela representa.</p>
-  </div>
-</section>
-
-<section class="closing">
-  <div class="wrap">
-    <p class="reveal">E é aí que nasce o pertencimento.</p>
-    <div class="final reveal">MXN<small>WEAR</small></div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">
-    <div class="brand">MAXI<span>NUTRI</span></div>
-    <div class="sub">CUIDANDO DE VOCÊ EM CADA MOVIMENTO</div>
-    <div class="links">
-      <span>@maxinutri</span>
-      <span>·</span>
-      <span>maxinutri.com.br</span>
-    </div>
-  </div>
-</footer>
 
 <script>
-  const bar = document.getElementById('progress');
-  window.addEventListener('scroll', () => {
-    const h = document.documentElement;
-    const pct = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
-    bar.style.width = pct + '%';
+(function(){
+  var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- side rail progress ---- */
+  var railFill = document.getElementById('railFill');
+  var railDot = document.getElementById('railDot');
+  function onScroll(){
+    var h = document.documentElement;
+    var pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+    pct = Math.max(0, Math.min(100, pct));
+    railFill.style.height = pct + '%';
+    railDot.style.top = pct + '%';
+  }
+  document.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* ---- generic reveal ---- */
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.35 });
+  document.querySelectorAll('section.m').forEach(function(section){
+    section.querySelectorAll('.reveal').forEach(function(el, i){
+      el.style.transitionDelay = (i % 4) * 0.12 + 's';
+      io.observe(el);
+    });
   });
 
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
-  }, { threshold: 0.2 });
-  document.querySelectorAll('.reveal').forEach((el, i) => {
-    el.style.transitionDelay = (i % 4) * 0.08 + 's';
-    io.observe(el);
-  });
+  /* ---- personalization via ?nome= ---- */
+  (function personalize(){
+    var params = new URLSearchParams(location.search);
+    var nome = params.get('nome');
+    if (!nome) return;
+    nome = nome.trim();
+    if (!/^[\p{L}\s'-]{1,24}$/u.test(nome)) return;
+    var el = document.getElementById('withYouLine');
+    if (!el) return;
+    el.textContent = '';
+    el.appendChild(document.createTextNode(nome + ','));
+    el.appendChild(document.createElement('br'));
+    var span = document.createElement('span');
+    span.className = 'accent';
+    span.textContent = 'essa história também tem os seus passos.';
+    el.appendChild(span);
+  })();
 
-  // 360 spin viewers, built from real product-video frames
-  function initSpin(el){
-    const prefix = el.dataset.prefix;
-    const count = parseInt(el.dataset.count, 10);
-    const pad = parseInt(el.dataset.pad, 10);
-    const img = el.querySelector('.spin-img');
-    const hint = el.querySelector('.spin-hint');
+  /* ---- M4: progressive product reveal ---- */
+  (function(){
+    var section = document.getElementById('m4');
+    var frames = Array.prototype.slice.call(section.querySelectorAll('.detail-frame'));
+    var caption = document.getElementById('detailCaption');
+    var labels = ['Logo.', 'Sola.', 'Textura.', ''];
+    var seqEls = section.querySelectorAll('.seq');
+    var started = false;
 
-    const srcs = [];
-    for (let i = 1; i <= count; i++) srcs.push(`${prefix}${String(i).padStart(pad, '0')}.jpg`);
-
-    let loaded = false;
-    function preload(){
-      if (loaded) return;
-      loaded = true;
-      srcs.forEach(s => { const im = new Image(); im.src = s; });
+    function finish(){
+      seqEls.forEach(function(el, i){
+        setTimeout(function(){ el.classList.add('in'); }, i * 90);
+      });
     }
 
-    let frame = 0;
-    let dir = 1;
-    let dragging = false;
-    let startX = 0;
-    let startFrame = 0;
-    let autoTimer = null;
-    let resumeTimer = null;
+    function play(){
+      if (started) return;
+      started = true;
+      if (reduced) {
+        frames.forEach(function(f, i){ f.classList.toggle('active', i === frames.length - 1); });
+        caption.classList.remove('show');
+        finish();
+        return;
+      }
+      var step = 0;
+      var iv = setInterval(function(){
+        step++;
+        frames.forEach(function(f, i){ f.classList.toggle('active', i === step); });
+        if (labels[step]) { caption.textContent = labels[step]; caption.classList.add('show'); }
+        else { caption.classList.remove('show'); }
+        if (step >= frames.length - 1) {
+          clearInterval(iv);
+          finish();
+        }
+      }, 850);
+    }
 
-    function render(){ img.src = srcs[frame]; }
+    var mIo = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting) play(); });
+    }, { threshold: 0.5 });
+    mIo.observe(section);
+  })();
+
+  /* ---- M5: 360 spin viewer with black/white toggle ---- */
+  (function(){
+    var SETS = {
+      black: { prefix: 'assets/spin-black/f', count: 32 },
+      white: { prefix: 'assets/spin-white/f', count: 31 }
+    };
+    var el = document.getElementById('spinEl');
+    var img = document.getElementById('spinImg');
+    var loading = document.getElementById('spinLoading');
+    var hint = document.getElementById('spinHint');
+    var buttons = document.querySelectorAll('.spin-toggle button');
+
+    var current = 'black';
+    var frame = 0;
+    var dir = 1;
+    var dragging = false;
+    var startX = 0;
+    var startFrame = 0;
+    var autoTimer = null;
+    var resumeTimer = null;
+    var pendingFrame = null;
+    var rafScheduled = false;
+    var ready = { black: false, white: false };
+    var loadedCount = { black: 0, white: 0 };
+
+    function srcs(set){
+      var s = SETS[set], list = [];
+      for (var i = 1; i <= s.count; i++) list.push(s.prefix + String(i).padStart(2, '0') + '.jpg');
+      return list;
+    }
+
+    function preload(set, onDone){
+      if (ready[set]) { if (onDone) onDone(); return; }
+      var list = srcs(set);
+      list.forEach(function(src){
+        var im = new Image();
+        im.decoding = 'async';
+        im.onload = im.onerror = function(){
+          loadedCount[set]++;
+          if (loadedCount[set] >= list.length) {
+            ready[set] = true;
+            if (onDone) onDone();
+          }
+        };
+        im.src = src;
+      });
+    }
+
+    function render(){ img.src = srcs(current)[frame]; }
 
     function stepAuto(){
+      var count = SETS[current].count;
       frame += dir;
       if (frame >= count - 1) { frame = count - 1; dir = -1; }
       if (frame <= 0) { frame = 0; dir = 1; }
       render();
     }
-    function startAuto(){
-      stopAuto();
-      autoTimer = setInterval(stepAuto, 90);
-    }
-    function stopAuto(){
-      if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
-    }
-    function pauseThenResume(){
-      stopAuto();
-      clearTimeout(resumeTimer);
-      resumeTimer = setTimeout(startAuto, 2600);
+    function startAuto(){ if (reduced) return; stopAuto(); autoTimer = setInterval(stepAuto, 90); }
+    function stopAuto(){ if (autoTimer) { clearInterval(autoTimer); autoTimer = null; } }
+    function pauseThenResume(){ stopAuto(); clearTimeout(resumeTimer); resumeTimer = setTimeout(startAuto, 2600); }
+
+    function scheduleRender(f){
+      pendingFrame = f;
+      if (rafScheduled) return;
+      rafScheduled = true;
+      requestAnimationFrame(function(){
+        if (pendingFrame != null) { frame = pendingFrame; render(); pendingFrame = null; }
+        rafScheduled = false;
+      });
     }
 
     function onDown(x){
-      preload();
-      dragging = true;
-      startX = x;
-      startFrame = frame;
-      stopAuto();
-      clearTimeout(resumeTimer);
-      hint.classList.add('hidden');
+      dragging = true; startX = x; startFrame = frame;
+      stopAuto(); clearTimeout(resumeTimer);
+      hint.classList.remove('show');
       el.style.cursor = 'grabbing';
     }
     function onMove(x){
       if (!dragging) return;
-      const dx = x - startX;
-      const delta = Math.round(-dx / 6);
-      let f = (startFrame + delta) % count;
+      var count = SETS[current].count;
+      var dx = x - startX;
+      var delta = Math.round(-dx / 6);
+      var f = (startFrame + delta) % count;
       if (f < 0) f += count;
-      frame = f;
-      render();
+      scheduleRender(f);
     }
     function onUp(){
       if (!dragging) return;
@@ -412,24 +474,54 @@
       pauseThenResume();
     }
 
-    el.addEventListener('pointerdown', e => onDown(e.clientX));
-    window.addEventListener('pointermove', e => onMove(e.clientX));
+    el.addEventListener('pointerdown', function(e){ onDown(e.clientX); });
+    window.addEventListener('pointermove', function(e){ onMove(e.clientX); });
     window.addEventListener('pointerup', onUp);
 
-    const spinIO = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
+    buttons.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var color = btn.dataset.color;
+        if (color === current) return;
+        buttons.forEach(function(b){ b.classList.toggle('active', b === btn); });
+        stopAuto(); clearTimeout(resumeTimer);
+
+        function swap(){
+          img.style.opacity = '0';
+          setTimeout(function(){
+            current = color; frame = 0; dir = 1;
+            render();
+            img.style.opacity = '1';
+            startAuto();
+          }, 220);
+        }
+
+        if (ready[color]) { swap(); }
+        else {
+          loading.classList.remove('hidden');
+          preload(color, function(){ loading.classList.add('hidden'); swap(); });
+        }
+      });
+    });
+
+    var spinIo = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
         if (entry.isIntersecting) {
-          preload();
-          startAuto();
+          preload('black', function(){
+            loading.classList.add('hidden');
+            hint.classList.add('show');
+            startAuto();
+            if ('requestIdleCallback' in window) requestIdleCallback(function(){ preload('white'); });
+            else setTimeout(function(){ preload('white'); }, 1500);
+          });
         } else {
           stopAuto();
           clearTimeout(resumeTimer);
         }
       });
-    }, { threshold: 0.35 });
-    spinIO.observe(el);
-  }
-  document.querySelectorAll('.spin').forEach(initSpin);
+    }, { threshold: 0.3 });
+    spinIo.observe(el);
+  })();
+})();
 </script>
 </body>
 </html>
