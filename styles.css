@@ -75,11 +75,9 @@ button{font-family:inherit;}
 
 /* text on dark backgrounds needs light body copy */
 .hero .hero-text,
-.story .hero-text,
-.closing .hero-text{color:#cfcfca;}
+.story-closing .hero-text{color:#cfcfca;}
 .hero .hero-text strong,
-.story .hero-text strong,
-.closing .hero-text strong{color:#fff;}
+.story-closing .hero-text strong{color:#fff;}
 
 /* ============ Header ============ */
 .site-header{
@@ -182,33 +180,32 @@ button{font-family:inherit;}
 .benefits-list strong{display:block;font-size:16px;font-weight:700;letter-spacing:.03em;color:#fff;margin-bottom:4px;}
 .benefits-list span{font-size:13.5px;color:#c3d6c9;font-weight:400;}
 
-/* ============ Story ============ */
-.story{
-  display:grid;grid-template-columns:1.2fr 1fr .55fr;background:var(--black);min-height:640px;
+/* ============ Story + Closing (one continuous section) ============ */
+.story-closing{
+  position:relative;display:grid;grid-template-columns:1.25fr 1fr;background:var(--black);min-height:760px;
 }
-.story-copy{
+.sc-text{
   background:linear-gradient(120deg,#111 0%,#0a0a0a 100%);
-  display:flex;flex-direction:column;justify-content:center;padding:60px 5vw;
+  display:flex;flex-direction:column;justify-content:space-between;padding:64px 5vw;
 }
-.story-photo{position:relative;overflow:hidden;}
-.story-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 15%;position:absolute;inset:0;}
-.story-tag{
-  background:#0a0a0a;display:flex;flex-direction:column;justify-content:center;align-items:flex-end;
-  padding:40px 32px;text-align:right;
+.sc-block .btn{margin-top:24px;}
+.sc-photo{position:relative;overflow:hidden;}
+.sc-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 12%;position:absolute;inset:0;}
+.sc-photo::after{
+  content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg, transparent 58%, rgba(6,6,6,.55) 82%, rgba(6,6,6,.92) 100%);
 }
-.story-tag p{font-size:13px;font-weight:800;letter-spacing:.1em;line-height:1.5;color:#e9e9e5;text-transform:uppercase;}
-.story-tag .divider{margin-left:auto;}
-
-/* ============ Closing ============ */
-.closing{
-  position:relative;padding:100px 0;overflow:hidden;
-  background:radial-gradient(120% 140% at 85% 0%, rgba(76,175,62,.08), transparent 60%), var(--black);
+.sc-tag{
+  position:absolute;top:50px;right:5%;z-index:2;text-align:right;
 }
-.closing-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:40px;align-items:center;}
-.closing-copy .btn{margin-top:26px;}
-.closing-brand{text-align:right;display:flex;flex-direction:column;align-items:flex-end;}
-.logo-lg{font-weight:800;font-size:clamp(28px,3vw,40px);color:#fff;}
-.tagline{font-size:13px;font-style:italic;color:#bdbdb8;margin-top:4px;}
+.sc-tag p{font-size:13px;font-weight:800;letter-spacing:.1em;line-height:1.5;color:#e9e9e5;text-transform:uppercase;}
+.sc-tag .divider{margin-left:auto;}
+.sc-brand{
+  position:absolute;bottom:44px;right:5%;z-index:2;text-align:right;
+  display:flex;flex-direction:column;align-items:flex-end;
+}
+.logo-lg{font-weight:800;font-size:clamp(24px,2.4vw,34px);color:#fff;}
+.tagline{font-size:12.5px;font-style:italic;color:#d6d6d2;margin-top:4px;}
 
 /* ============ Footer ============ */
 .site-footer{background:var(--black);border-top:1px solid var(--line);padding:24px 0;}
@@ -240,7 +237,7 @@ button{font-family:inherit;}
   .hero-grid{grid-template-columns:1.5fr 1.5fr .95fr;gap:18px;}
   .mxn-stack{font-size:clamp(38px,5.4vw,60px);}
   .product-grid{grid-template-columns:1.4fr 1fr;}
-  .story{grid-template-columns:1.15fr 1fr .5fr;}
+  .story-closing{grid-template-columns:1.1fr 1fr;}
 }
 
 /* ---- 769-991 (tablet): progressive recomposition ---- */
@@ -264,14 +261,12 @@ button{font-family:inherit;}
   .benefits-photo{height:360px;}
   .benefits-panel{padding:48px 6vw;}
 
-  .story{grid-template-columns:1fr;}
-  .story-copy{padding:56px 6vw;order:1;}
-  .story-photo{height:420px;order:2;}
-  .story-tag{align-items:flex-start;text-align:left;padding:36px 6vw;order:3;}
-  .story-tag .divider{margin-left:0;}
-
-  .closing-grid{grid-template-columns:1fr;text-align:left;gap:30px;}
-  .closing-brand{align-items:flex-start;text-align:left;}
+  .story-closing{grid-template-columns:1fr;}
+  .sc-text{display:contents;}
+  .sc-block:first-child{order:1;padding:56px 6vw 30px;}
+  .sc-photo{order:2;height:460px;}
+  .sc-block:last-child{order:3;padding:36px 6vw 0;}
+  .sc-brand{position:static;order:4;align-items:flex-start;text-align:left;padding:32px 6vw 48px;}
 }
 
 /* ---- 481-768 (large mobile / small tablet): full mobile composition ---- */
@@ -322,9 +317,9 @@ button{font-family:inherit;}
   .benefits-photo{height:300px;}
   .benefits-list li{gap:14px;}
 
-  .story-photo{height:360px;}
-
-  .closing{padding:70px 0;}
+  .sc-photo{height:340px;}
+  .sc-block:first-child{padding-top:64px;}
+  .sc-brand{padding-bottom:60px;}
 }
 
 /* ---- <=480: tight phones ---- */
