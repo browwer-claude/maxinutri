@@ -121,12 +121,38 @@
     background:var(--ink);border:1px solid rgba(255,255,255,.08);
     border-radius:20px;overflow:hidden;
   }
-  .shoe-card img{width:100%;display:block;aspect-ratio:478/540;object-fit:cover;}
   .shoe-card .cap{
     padding:16px 18px 20px;display:flex;justify-content:space-between;align-items:center;
   }
   .shoe-card .cap b{font-size:15px;font-weight:800;}
   .shoe-card .cap span{font-size:12px;color:var(--gray);letter-spacing:.03em;}
+
+  .spin{
+    position:relative;aspect-ratio:340/604;background:#0d0d0d;
+    touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none;
+  }
+  .spin:active{cursor:grabbing;}
+  .spin img{
+    width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;
+    -webkit-user-drag:none;
+  }
+  .spin-hint{
+    position:absolute;left:50%;bottom:16px;transform:translateX(-50%);
+    display:flex;align-items:center;gap:7px;
+    background:rgba(10,10,10,.6);backdrop-filter:blur(4px);
+    border:1px solid rgba(255,255,255,.15);border-radius:999px;
+    padding:8px 14px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+    font-weight:700;color:#fff;white-space:nowrap;
+    transition:opacity .4s ease;pointer-events:none;
+  }
+  .spin-hint svg{width:15px;height:15px;stroke:var(--lime);flex-shrink:0;}
+  .spin-hint.hidden{opacity:0;}
+  .spin-badge{
+    position:absolute;top:14px;right:14px;
+    background:rgba(10,10,10,.55);border:1px solid rgba(255,255,255,.15);
+    color:var(--lime);font-size:10px;font-weight:800;letter-spacing:.08em;
+    padding:5px 10px;border-radius:999px;text-transform:uppercase;
+  }
 
   .divider{
     width:56px;height:5px;background:linear-gradient(90deg,var(--accent),var(--lime));
@@ -233,11 +259,25 @@
     </div>
     <div class="shoes">
       <div class="shoe-card reveal">
-        <img src="assets/mxn-black.jpg" alt="Tênis MXN colorway preto e lima" loading="lazy">
+        <div class="spin" data-prefix="assets/spin-black/f" data-count="32" data-pad="2">
+          <span class="spin-badge">360°</span>
+          <img class="spin-img" src="assets/spin-black/f01.jpg" alt="Tênis MXN colorway preto e lima — arraste para girar" draggable="false">
+          <div class="spin-hint">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
+            arraste para girar
+          </div>
+        </div>
         <div class="cap"><b>MXN</b><span>Preto &amp; Lima</span></div>
       </div>
       <div class="shoe-card reveal">
-        <img src="assets/mxn-white.jpg" alt="Tênis MXN colorway branco e verde" loading="lazy">
+        <div class="spin" data-prefix="assets/spin-white/f" data-count="31" data-pad="2">
+          <span class="spin-badge">360°</span>
+          <img class="spin-img" src="assets/spin-white/f01.jpg" alt="Tênis MXN colorway branco e verde — arraste para girar" draggable="false">
+          <div class="spin-hint">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
+            arraste para girar
+          </div>
+        </div>
         <div class="cap"><b>MXN</b><span>Branco &amp; Verde</span></div>
       </div>
     </div>
@@ -298,6 +338,98 @@
     el.style.transitionDelay = (i % 4) * 0.08 + 's';
     io.observe(el);
   });
+
+  // 360 spin viewers, built from real product-video frames
+  function initSpin(el){
+    const prefix = el.dataset.prefix;
+    const count = parseInt(el.dataset.count, 10);
+    const pad = parseInt(el.dataset.pad, 10);
+    const img = el.querySelector('.spin-img');
+    const hint = el.querySelector('.spin-hint');
+
+    const srcs = [];
+    for (let i = 1; i <= count; i++) srcs.push(`${prefix}${String(i).padStart(pad, '0')}.jpg`);
+
+    let loaded = false;
+    function preload(){
+      if (loaded) return;
+      loaded = true;
+      srcs.forEach(s => { const im = new Image(); im.src = s; });
+    }
+
+    let frame = 0;
+    let dir = 1;
+    let dragging = false;
+    let startX = 0;
+    let startFrame = 0;
+    let autoTimer = null;
+    let resumeTimer = null;
+
+    function render(){ img.src = srcs[frame]; }
+
+    function stepAuto(){
+      frame += dir;
+      if (frame >= count - 1) { frame = count - 1; dir = -1; }
+      if (frame <= 0) { frame = 0; dir = 1; }
+      render();
+    }
+    function startAuto(){
+      stopAuto();
+      autoTimer = setInterval(stepAuto, 90);
+    }
+    function stopAuto(){
+      if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+    }
+    function pauseThenResume(){
+      stopAuto();
+      clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(startAuto, 2600);
+    }
+
+    function onDown(x){
+      preload();
+      dragging = true;
+      startX = x;
+      startFrame = frame;
+      stopAuto();
+      clearTimeout(resumeTimer);
+      hint.classList.add('hidden');
+      el.style.cursor = 'grabbing';
+    }
+    function onMove(x){
+      if (!dragging) return;
+      const dx = x - startX;
+      const delta = Math.round(-dx / 6);
+      let f = (startFrame + delta) % count;
+      if (f < 0) f += count;
+      frame = f;
+      render();
+    }
+    function onUp(){
+      if (!dragging) return;
+      dragging = false;
+      el.style.cursor = 'grab';
+      pauseThenResume();
+    }
+
+    el.addEventListener('pointerdown', e => onDown(e.clientX));
+    window.addEventListener('pointermove', e => onMove(e.clientX));
+    window.addEventListener('pointerup', onUp);
+
+    const spinIO = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          preload();
+          startAuto();
+        } else {
+          stopAuto();
+          clearTimeout(resumeTimer);
+        }
+      });
+    }, { threshold: 0.35 });
+    spinIO.observe(el);
+  }
+  document.querySelectorAll('.spin').forEach(initSpin);
 </script>
 </body>
 </html>
